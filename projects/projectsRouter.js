@@ -60,4 +60,10 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(500).json({errorMessage: 'Could not delete the project with the specified ID at this time', error: err}));
 })
 
+router.get('/:id/actions', (req, res) => {
+  db.getProjectActions(req.params.id)
+    .then(actions => res.status(200).json(actions))
+    .catch(err => res.status(500).json({errorMessage: 'Could not retrieve the actions for the project with the specified ID at this time', error: err}));
+})
+
 module.exports = router;
